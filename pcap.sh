@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# QUestions to Tobias: How are packages managed on RHEL. Linux OS breakdown
-# (Axonius)
+# QUestions to How are packages managed on RHEL. Linux OS breakdown
+#
 
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
@@ -11,7 +11,7 @@ exec 1>log.out 2>&1
 # -Fix Epoch time to human readable
 
 runPCAP () {
-  mkdir pcaps
+  mkdir pcaps # check on -p
   cd pcaps
   currentDT=$(date "+%F_%s")
   hostname=$(hostname)
@@ -21,7 +21,7 @@ runPCAP () {
 }
 
 os=$(uname) #check Kernel Name
-if [[ $os = "Linux" ]];
+if [[ $os = "Linux" ]]; # check if substring is better option
   then
     installed=$(dpkg -S /usr/sbin/tcpdump)
     if [[ $installed = "tcpdump: /usr/sbin/tcpdump" ]];
